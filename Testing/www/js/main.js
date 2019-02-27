@@ -1,16 +1,17 @@
 var app = {
-
+  //When typing names into search window, show suggested names from employees collection
   findByName: function() {
     var self = this;
     this.store.findByName($('.search-key').val(), function(employees) {
         $('.employee-list').html(self.employeeLiTpl(employees));
     });
 },
-
+  //initializes application and chooses view (home or employee)
     initialize: function() {
     var self = this;
     this.detailsURL = /^#employees\/(\d{1,})/;
     this.store = new MemoryStore(function() {
+        self.showAlert('Store Initialized', 'Info');
         self.route();
     });
     this.homeTpl = Handlebars.compile($("#home-tpl").html());
@@ -18,7 +19,7 @@ var app = {
     self.registerEvents();
 },
 
-
+//If application is native (on phone and emulator) show native notification; else show default notification
     showAlert: function (message, title) {
     if (navigator.notification) {
         navigator.notification.alert(message, null, title, 'OK');
@@ -30,7 +31,7 @@ renderHomeView: function() {
     $('body').html(this.homeTpl());
     $('.search-key').on('keyup', $.proxy(this.findByName, this));
 },
-
+//js for registering events, like clicking on employee names
 registerEvents: function() {
     var self = this;
     // Check of browser supports touch events...

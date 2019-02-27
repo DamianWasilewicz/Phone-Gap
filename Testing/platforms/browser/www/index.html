@@ -1,18 +1,21 @@
 <html>
 <head>
+  <!-- Imports css stylesheet and js stylistic script-->
   <script src="css/source-sans-pro.js"></script>
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-
+  <!-- For this project we played around with HTML templates to keep the HTML styling to one sheet. We made use of Handlebar,
+  but other options were also available. These scripts are initialized within the main and employeeview js files and utlized-->
   <div>
+  <!--HTML template for home page-->
     <script id="home-tpl" type="text/x-handlebars-template">
       <div class='header'><h1>Home</h1></div>
       <div class='search-bar'><input class='search-key' type="search"/></div>
       <div class="scroll"><ul class='employee-list'></ul></div>
   </script>
-
+  <!--HTML template for employee pages-->
   <script id="employee-li-tpl" type="text/x-handlebars-template">
     {{#.}}
     <li><a href="#employees/{{this.id}}">{{this.firstName}} {{this.lastName}}<br/>{{this.title}}</a></li>
@@ -27,10 +30,10 @@
         <h2>{{title}}</h2>
         <span class="location"></span>
         <ul>
+          <!--list of employee contact info. When clicked on, calls!-->
             <li><a href="tel:{{officePhone}}">Call Office<br/>{{officePhone}}</a></li>
             <li><a href="tel:{{cellPhone}}">Call Cell<br/>{{cellPhone}}</a></li>
             <li><a href="sms:{{cellPhone}}">SMS<br/>{{cellPhone}}</a></li>
-            <li><a href="#" class="add-location-btn">Add Location</a></li>
         </ul>
     </div>
 </script>
